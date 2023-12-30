@@ -1,0 +1,27 @@
+.boton-amarillo-block {
+    @include boton($amarillo, block, $blanco); 
+}
+
+.boton-amarillo-inline-block {
+    @include boton($amarillo, inline-block, $blanco); 
+}
+
+.boton-verde {
+    @include boton($verde, inline-block, $blanco); 
+}
+
+.boton-rojo-block {
+    @include boton($rojo, block, $blanco);
+    width: 100%;
+    padding: 1.5rem 3rem; 
+}
+
+.boton-verde-block {
+    @include boton($verde, block, $blanco);
+}
+
+form .boton-centrado {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto; 
+}

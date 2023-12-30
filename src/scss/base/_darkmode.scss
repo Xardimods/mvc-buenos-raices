@@ -1,0 +1,62 @@
+.dark-mode {
+    background-color: darken($grisOscuro, 10);
+
+    p {
+        color: $blanco;
+    }
+
+    a,h1,h2,h3,h4 {
+        color: $gris;
+    }
+
+    .anuncio {
+        background-color: $grisOscuro;
+        border: 3px solid $grisOscuro;
+
+        .precio {
+            color: $verde;
+        }
+    }
+
+    .iconos-caracteristicas li > img {
+        filter: invert(100%);
+    }
+
+    .texto-nosotros blockquote {
+    color: $blanco;
+    } 
+
+    .formulario {
+        label,
+        legend,
+        p {
+            color: $gris;
+        }
+
+        input:not([type = "submit"]),
+        textarea, 
+        select {
+            background-color: $grisOscuro;
+            border: 1.5px solid $grisOscuro;
+            color: $blanco;
+        }
+    }
+
+    @media (max-width: 768px) {
+        table.propiedades tr {
+            // border: 3px solid #FFF;
+            // box-shadow: .15rem .15rem .5rem #ddd
+            background-color: #4d4d4d
+        }
+    }
+
+    // table.propiedades {
+    //     tr:nth-child(even):not(:last-child) {
+    //         background-color: #4d4d4d;
+    //     }
+    // }
+
+    td {
+        color: $blanco;
+    }
+}

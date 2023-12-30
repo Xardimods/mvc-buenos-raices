@@ -1,0 +1,102 @@
+.derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+        flex-direction: row;
+        align-items: flex-end;
+        column-gap: 5rem;
+    }
+
+    .dark-mode-boton {
+        width: 4rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        filter: invert(100%);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @include tablet {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.barra {
+    .logo-header {
+        margin: 0 auto;
+        max-width: 100%;
+        width: 28rem;
+        height: auto;
+    }
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.5rem;
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.navegacion {
+
+    display: none;
+    @include tablet {
+        display: flex;
+        align-items: center;
+    }
+
+    a {
+        color: $blanco;
+        text-decoration: none;
+        font-size: 2.2rem;
+        display: block;
+        text-align: center;
+        transition: all 0.3s;
+
+        @include tablet {
+            margin-right: 2rem;
+            font-size: 2rem;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+
+    a:hover {
+        color: $verde
+    }
+}
+
+
+
+/* NAVEGACION PARA MOVILES */
+
+.mobile-menu {
+    margin-top: 1rem;
+
+    @include tablet {
+        display: none;
+    }
+
+    img {
+        width: 5rem;
+    }
+}
+
+.mostrar {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+    }
+}
