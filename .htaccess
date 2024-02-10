@@ -1,7 +1,0 @@
-php_value display_errors 1
-php_flag output_buffering on
-DirectoryIndex index.php
-
-RewriteEngine On
-RewriteRule ^$ public/index.php [L]
-RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
