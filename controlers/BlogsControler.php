@@ -1,14 +1,18 @@
 <?php
+// Coment
+declare(strict_types=1);
 
-declare(strict_types = 1);
 namespace Controlers;
-use MVC\Router; 
+
+use MVC\Router;
 use Model\Blogs;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class BLogsControler {
+class BLogsControler
+{
 
-    public static function create (Router $router) : void  {
+    public static function create(Router $router): void
+    {
 
         $blog = new Blogs;
         $errores = Blogs::getErrores();
@@ -18,7 +22,7 @@ class BLogsControler {
             $blog = new Blogs($_POST["blog"]);
 
             $nombreImagen = md5(uniqid("", true)) . ".jpg";
-            
+
             if ($_FILES["blog"]["tmp_name"]["imagen"]) {
                 $image = Image::make($_FILES["blog"]["tmp_name"]["imagen"])->fit(800, 600);
                 $blog->setImagen($nombreImagen);
@@ -31,12 +35,12 @@ class BLogsControler {
                 if (!is_dir(CARPETA_BLOGS_IMAGENES)) {
                     mkdir(CARPETA_BLOGS_IMAGENES);
                 }
-                
+
                 // Guardar la imagen en el servidor 
                 $image->save(CARPETA_BLOGS_IMAGENES . "/" . $nombreImagen);
 
                 // Guardar en la base de datos 
-                $blog->create(); 
+                $blog->create();
             }
         }
 
@@ -46,7 +50,8 @@ class BLogsControler {
         ]);
     }
 
-    public static function update (Router $router) : void {
+    public static function update(Router $router): void
+    {
 
         $blog = new Blogs;
         $errores = Blogs::getErrores();
@@ -56,23 +61,23 @@ class BLogsControler {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // Asignar los atributos
-            $args= $_POST["blog"];
+            $args = $_POST["blog"];
             $blog->sincronizar($args);
             $errores = $blog->validarInputs();
             $nombreImagen = md5(uniqid("", true)) . ".jpg";
-            $image = null; 
+            $image = null;
 
             if ($_FILES["blog"]["tmp_name"]["imagen"]) {
                 $image = Image::make($_FILES["blog"]["tmp_name"]["imagen"])->fit(800, 600);
                 $blog->setImagen($nombreImagen);
-            } 
+            }
 
             if (empty($errores)) {
                 if ($_FILES["blog"]["tmp_name"]["imagen"]) {
-                    $image->save(CARPETA_BLOGS_IMAGENES."/".$nombreImagen); 
-                }  
+                    $image->save(CARPETA_BLOGS_IMAGENES . "/" . $nombreImagen);
+                }
                 $blog->create();
-        }
+            }
         }
 
         $router->renderView("/blogs/actualizar", [
@@ -81,20 +86,21 @@ class BLogsControler {
         ]);
     }
 
-    public static function delete (Router $router) : void {
+    public static function delete(Router $router): void
+    {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $id = $_POST["id"]; 
-            $id = filter_var($id, FILTER_VALIDATE_INT); 
-            
+            $id = $_POST["id"];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
             if ($id) {
-    
+
                 $tipo = $_POST["tipo"];
-    
+
                 if (validarContenido($tipo)) {
                     $blog = Blogs::setFindUpdate($id);
                     $blog->eliminar();
-                } 
-            } 
+                }
+            }
         }
     }
 }
